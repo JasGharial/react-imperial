@@ -1,7 +1,14 @@
+//  Hooks
 import { useState } from "react"
+
+// Utilities
 import { createAuthUserwithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
+// Components
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+
+// Styles
 import './sign-up-form.styles.scss'
 
 const defaultFormFields = {
@@ -26,14 +33,13 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       console.log('Password and Confirm Password Mismatch')
       return;
     }
 
     try {
       const { user } = await createAuthUserwithEmailAndPassword(email, password)
-      console.log(user);
 
       const saveUserDocForm = await createUserDocumentFromAuth(user, {displayName})
       console.log(saveUserDocForm);
