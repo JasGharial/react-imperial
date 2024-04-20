@@ -11,6 +11,7 @@ import { useContext } from "react";
 
 // Context
 import { UserContext } from "../../contexts/user.context";
+import { CartContext } from "../../contexts/cart.context";
 
 // Components
 import CartIcon from "../cart-icon/cart-icon.component";
@@ -18,6 +19,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 const Navigation = () => {
 const { currentUser } = useContext(UserContext)
+const { isCartOpen } = useContext(CartContext)
 
   return (
     <>
@@ -34,7 +36,7 @@ const { currentUser } = useContext(UserContext)
           }
           <CartIcon />
         </div>
-        <CartDropdown />
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </>
