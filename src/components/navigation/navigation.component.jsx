@@ -12,6 +12,10 @@ import { useContext } from "react";
 // Context
 import { UserContext } from "../../contexts/user.context";
 
+// Components
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+
 const Navigation = () => {
 const { currentUser } = useContext(UserContext)
 
@@ -28,7 +32,9 @@ const { currentUser } = useContext(UserContext)
           {
             currentUser ? ( <span className="nav-link" onClick={signOutUser}>SIGN OUT</span> ) : ( <Link className="sign-in nav-link" to="auth">SIGN IN</Link> )
           }
+          <CartIcon />
         </div>
+        <CartDropdown />
       </div>
       <Outlet />
     </>
