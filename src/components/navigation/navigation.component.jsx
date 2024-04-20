@@ -10,7 +10,7 @@ import './navigation.styles.scss';
 import { useContext } from "react";
 
 // Context
-import { UserContext } from "../../contexts/usercontext";
+import { UserContext } from "../../contexts/user.context";
 
 const Navigation = () => {
 const { currentUser } = useContext(UserContext)

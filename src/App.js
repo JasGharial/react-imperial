@@ -1,13 +1,11 @@
+// Dependencies
+import { Routes, Route } from "react-router-dom";
+
+// Components
 import Home from "./routes/home/home.component";
 import Navigation from "./components/navigation/navigation.component";
-import { Routes, Route } from "react-router-dom";
 import Authentication from "./routes/authentication/authentication.component";
-
-const Shop = () => {
-  return(
-    <div>I'm at a Shop</div>
-  )
-}
+import Shop from "./routes/shop/shop.component";
 
 function App() {
   return(
