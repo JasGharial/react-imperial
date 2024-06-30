@@ -8,18 +8,19 @@ import { NavigationContainer, LogoContainer, NavLinksContainer, NavLink } from '
 
 // Hooks
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 // Context
-import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 // Components
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 const Navigation = () => {
-const { currentUser } = useContext(UserContext)
-const { isCartOpen } = useContext(CartContext)
+  const currentUser = useSelector(selectCurrentUser);
+  const { isCartOpen } = useContext(CartContext)
 
   return (
     <>
