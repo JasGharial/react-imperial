@@ -60,26 +60,24 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionReference);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((accumulator, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    accumulator[title.toLowerCase()] = items;
-    return accumulator;
-  }, {});
-
-  return categoryMap;
-}
+  // querySnapshot.forEach((doc) => {
+  //   // doc.data() is never undefined for query doc snapshots
+  //   console.log(doc.id, " => ", doc.data());
+  // });
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
 
 export const createUserDocumentFromAuth = async (
-  userAuth,
-  additionalInformation = { displayName: 'John Doe' }
+    userAuth,
+    additionalInformation = {}
 ) => {
-  const userDockRef = doc(db, 'users', userAuth.uid)
-  console.log(userDockRef)
+  if (!userAuth) return;
 
-  const userSnapShot = await getDoc(userDockRef)
-  console.log(userSnapShot)
+  const userDockRef = doc(db, 'users', userAuth.uid);
 
-  if (!userSnapShot.exists()) {
+  const userSnapshot = await getDoc(userDockRef);
+
+  if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -105,6 +103,6 @@ export const authenticatUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 }
 
-export const signOutUser = async () => { await signOut(auth)}
+export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

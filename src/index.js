@@ -10,7 +10,6 @@ import { store } from "./store/store";
 import App from './App';
 
 // Context
-import { CategoriesProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
